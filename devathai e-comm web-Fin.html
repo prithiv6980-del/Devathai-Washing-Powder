@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devathai Cleaning Solutions | Advanced Accounts</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f0f4f8; color: #2d3748; padding-bottom: 50px; }
+        header { background: linear-gradient(135deg, #1a365d, #2a4365); color: white; padding: 2.5rem 1rem; text-align: center; border-bottom: 5px solid #3182ce; }
+        header h1 { font-size: 2.5rem; font-weight: 700; }
+        header p { margin-top: 0.5rem; font-size: 1.1rem; opacity: 0.9; }
+        .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+        .form-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
+        .form-card h2 { font-size: 1.2rem; color: #2b6cb0; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+        .input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 600px) { .input-group { grid-template-columns: 1fr; } }
+        .input-field { display: flex; flex-direction: column; }
+        .input-field label { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; color: #4a5568; }
+        .input-field input { padding: 0.6rem; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 1rem; outline: none; }
+        .input-field input:focus { border-color: #3182ce; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .product-card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+        .product-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #3182ce; }
+        .product-title { font-size: 1.15rem; font-weight: 700; color: #1a202c; }
+        .product-desc { font-size: 0.85rem; color: #718096; margin-top: 0.3rem; }
+        .product-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+        .product-price { font-weight: bold; color: #2d3748; }
+        .counter-box { display: flex; align-items: center; gap: 0.5rem; }
+        .counter-btn { width: 32px; height: 32px; border: none; background: #e2e8f0; font-size: 1.2rem; font-weight: bold; border-radius: 6px; cursor: pointer; }
+        .counter-box input { width: 50px; text-align: center; padding: 0.4rem; border: 1px solid #cbd5e0; border-radius: 6px; font-weight: 600; }
+        .sidebar { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid #2b6cb0; height: fit-content; position: sticky; top: 20px; }
+        .sidebar h2 { font-size: 1.4rem; text-align: center; margin-bottom: 1.5rem; }
+        .summary-row { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px dashed #e2e8f0; }
+        .summary-row.total { border-bottom: none; font-size: 1.4rem; font-weight: 800; color: #2b6cb0; margin-top: 1rem; }
+        .submit-btn { background: #48bb78; color: white; border: none; width: 100%; padding: 1rem; font-size: 1.15rem; font-weight: 700; border-radius: 8px; cursor: pointer; margin-top: 1.5rem; box-shadow: 0 4px 12px rgba(72,187,120,0.3); }
+        .submit-btn:hover { background: #38a169; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>தேவதை க்ளீனிங் சொல்யூஷன்ஸ்</h1>
+        <p>B2B & Retail Smart Account Dashboard | சொக்கனூர், திருப்பூர்</p>
+    </header>
+
+    <div class="main-container">
+        <div>
+            <div class="form-card">
+                <h2>வாடிக்கையாளர் விபரங்கள் (Customer Details)</h2>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label>உங்கள் பெயர் / Name *</label>
+                        <input type="text" id="cust-name" placeholder="பெயரை டைப் செய்யவும்">
+                    </div>
+                    <div class="input-field">
+                        <label>நிறுவனம் / கடையின் பெயர் (Optional)</label>
+                        <input type="text" id="cust-shop" placeholder="கடை பெயர்">
+                    </div>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                <!-- Phenyl -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-title">Premium Phenyl</div>
+                        <div class="product-desc">தரை தளங்களை சுத்தமாக்கும் நறுமண பினாயில்.</div>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-price">₹30 / L</div>
+                        <div class="counter-box">
+                            <button class="counter-btn" onclick="changeQty('phenyl', -5)">-</button>
+                            <input type="number" id="qty-phenyl" value="0" min="0" onchange="calculateBill()">
+                            <button class="counter-btn" onclick="changeQty('phenyl', 5)">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Acid -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-title">Strong Acid</div>
+                        <div class="product-desc">கடினமான கறை நீக்கும் சக்திவாய்ந்த ஆசிட்.</div>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-price">₹30 / L</div>
+                        <div class="counter-box">
+                            <button class="counter-btn" onclick="changeQty('acid', -5)">-</button>
+                            <input type="number" id="qty-acid" value="0" min="0" onchange="calculateBill()">
+                            <button class="counter-btn" onclick="changeQty('acid', 5)">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Soap Oil -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-title">Soap Oil</div>
+                        <div class="product-desc">அனைத்து கிளீனிங் வேலைக்கும் மல்டிபர்பஸ் சோப் ஆயில்.</div>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-price">₹30 / L</div>
+                        <div class="counter-box">
+                            <button class="counter-btn" onclick="changeQty('soap', -5)">-</button>
+                            <input type="number" id="qty-soap" value="0" min="0" onchange="calculateBill()">
+                            <button class="counter-btn" onclick="changeQty('soap', 5)">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bleaching Oil -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-title">Bleaching Oil</div>
+                        <div class="product-desc">கிருமி நாசினி மற்றும் துர்நாற்றமடைப்பான்.</div>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-price">₹30 / L</div>
+                        <div class="counter-box">
+                            <button class="counter-btn" onclick="changeQty('bleach', -5)">-</button>
+                            <input type="number" id="qty-bleach" value="0" min="0" onchange="calculateBill()">
+                            <button class="counter-btn" onclick="changeQty('bleach', 5)">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dress Washer -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-title">Dress Washer</div>
+                        <div class="product-desc">துணிகளை பளபளப்பாக்கும் லிக்விட் டிடெர்ஜென்ட்.</div>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-price">₹100 / L</div>
+                        <div class="counter-box">
+                            <button class="counter-btn" onclick="changeQty('washer', -5)">-</button>
+                            <input type="number" id="qty-washer" value="0" min="0" onchange="calculateBill()">
+                            <button class="counter-btn" onclick="changeQty('washer', 5)">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dishwash -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-title">Dishwash Liquid</div>
+                        <div class="product-desc">பாத்திர பிசுபிசுப்பை நீக்கும் லிக்விட் சோப்.</div>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-price">₹90 / L</div>
+                        <div class="counter-box">
+                            <button class="counter-btn" onclick="changeQty('dish', -5)">-</button>
+                            <input type="number" id="qty-dish" value="0" min="0" onchange="calculateBill()">
+                            <button class="counter-btn" onclick="changeQty('dish', 5)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h2>ஆர்டர் சுருக்கம் (Live Bill)</h2>
+            <div class="summary-row">
+                <span>மொத்த வகைகள்:</span>
+                <span id="summary-items" style="font-weight:bold;">0</span>
+            </div>
+            <div class="summary-row">
+                <span>மொத்த அளவு:</span>
+                <span id="summary-litres" style="font-weight:bold;">0 L</span>
+            </div>
+            <div class="summary-row total">
+                <span>மொத்த தொகை:</span>
+                <span id="summary-total">₹0</span>
+            </div>
+            <button class="submit-btn" onclick="processOrder()">உறுதி செய்து ஆர்டர் செய் 💬</button>
+        </div>
+    </div>
+
+    <script>
+        const prices = { phenyl: 30, acid: 30, soap: 30, bleach: 30, washer: 100, dish: 90 };
+        
+        // உங்களுடைய புதிய வெப் ஆப் URL லிங்க் இங்கே இணைக்கப்பட்டுள்ளது பிரித்திவ்!
+        const googleScriptURL = "https://script.google.com/macros/s/AKfycbz82Ax768Uf4HsOMuaTpqLMdBXaPSVIz3Q51PzYn0CKXNSKrvq724HgpgajDgQ7V-9e/exec"; 
+        const whatsappNumber = "918248116414"; 
+
+        function changeQty(id, amt) {
+            const input = document.getElementById('qty-' + id);
+            let val = parseInt(input.value) || 0;
+            val += amt;
+            if (val < 0) val = 0;
+            input.value = val;
+            calculateBill();
+        }
+
+        function calculateBill() {
+            let totalLitres = 0, totalItems = 0, grandTotal = 0;
+            for (let key in prices) {
+                let qty = parseInt(document.getElementById('qty-' + key).value) || 0;
+                if (qty > 0) { totalItems++; totalLitres += qty; grandTotal += qty * prices[key]; }
+            }
+            document.getElementById('summary-items').innerText = totalItems;
+            document.getElementById('summary-litres').innerText = totalLitres + " L";
+            document.getElementById('summary-total').innerText = "₹" + grandTotal;
+        }
+
+        function processOrder() {
+            const name = document.getElementById('cust-name').value.trim();
+            const shop = document.getElementById('cust-shop').value.trim();
+            if (!name) { alert("தயவுசெய்து பெயர் உள்ளிடவும்!"); return; }
+
+            let grandTotal = 0;
+            let hasItems = false;
+            
+            // கூகுள் ஷீட்டுக்கு தனித்தனி காலமிற்கு டேட்டாவை அனுப்பும் ஆப்ஜெக்ட்
+            let sheetData = { name: name, shop: shop, phenylDetails: "0", acidDetails: "0", soapDetails: "0", bleachDetails: "0", washerDetails: "0", dishDetails: "0", grandTotal: "0" };
+
+            let whatsappMsg = `*புதிய ஆர்டர் - தேவதை க்ளீனிங் சொல்யூஷன்ஸ்*%0A👤 பெயர்: ${name}%0A🏪 கடை: ${shop}%0A%0A`;
+            
+            const namesMap = { phenyl: "Premium Phenyl", acid: "Strong Acid", soap: "Soap Oil", bleach: "Bleaching Oil", washer: "Dress Washer", dish: "Dishwash Liquid" };
+
+            for (let key in prices) {
+                let qty = parseInt(document.getElementById('qty-' + key).value) || 0;
+                if (qty > 0) {
+                    let cost = qty * prices[key];
+                    grandTotal += cost;
+                    let detailStr = `${qty}L x ₹${prices[key]} = ₹${cost}`;
+                    
+                    // தனித்தனி காலமிற்கு டேட்டாவை மேப் செய்தல்
+                    sheetData[key + "Details"] = detailStr;
+                    whatsappMsg += `🔹 *${namesMap[key]}* -> ${qty}L x ₹${prices[key]} = *₹${cost}*%0A`;
+                    hasItems = true;
+                }
+            }
+
+            if (!hasItems) { alert("தயவுசெய்து ஏதேனும் ஒரு அளவை உள்ளிடவும்!"); return; }
+            
+            sheetData.grandTotal = "₹" + grandTotal;
+            whatsappMsg += `%0A💰 *மொத்த பில் தொகை: ₹${grandTotal}*`;
+
+            // கூகுள் ஷீட்டுக்கு டேட்டாவை அனுப்புதல்
+            fetch(googleScriptURL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(sheetData)
+            });
+
+            // வாட்ஸ்அப் விண்டோ ஓப்பன் செய்தல்
+            window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${whatsappMsg}`, '_blank');
+        }
+    </script>
+</body>
+</html>
